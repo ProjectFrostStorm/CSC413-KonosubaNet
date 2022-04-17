@@ -1,5 +1,12 @@
 # CSC413-KonosubaNet
 
-#Task
+# Task
 
-#Model
+# Model
+
+# Data
+
+# Results
+
+# Ethical concerns
+
