@@ -1,0 +1,36 @@
+Line 1.
+
+"Line 2. This is a spoken dialogue."
+
+Line 3. Sentence 2. Sentences 3, and 4.
+
+^PART SPLIT^
+
+Line 4, first line of vol 1, chapter 1, part 2.
+
+
+<TL Note: Line 4.5, this is a TL note and will be excluded if the "Filter Out TL Note" option is checked>
+
+
+
+
+
+
+
+
+Line 5, this is the immediate next line following line 4 or 4.5.
+
+
+
+
+^CHAPTER SPLIT^
+
+Line 6. this is the start of a new chapter: vol 1, chapter 2, part 1.
+
+
+
+^VOL SPLIT^
+
+
+
+Line 7. This is the first line of vol 2.

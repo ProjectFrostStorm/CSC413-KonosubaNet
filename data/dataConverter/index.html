@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Converter</title>
+
+        <!--
+        <link rel="stylesheet" type="text/css" href="infinisweeper.css"> <!-- CSS Sheet -->
+    </head>
+
+    <body>
+        <h1>Data Converter</h1>
+
+        <div>
+            File: <input type="file" id="fileUp"> 
+        </div>
+
+        <h2>Data Conversion</h2>
+        <div id="jsonConvert">
+            <button type="button" onclick="convertToJSON()">Plaintext to JSON</button>
+            <br>
+            <button type="button" onclick="convertToData()">JSON to Data</button>
+        </div>
+        <div id="optionSelect">
+            <div><b>JSON to Data Options</b></div>
+            <input type="checkbox" id="narrationMask" name="narrationMask"> 
+            <label for="narrationMask">Filter out Narration Lines</label>
+            <br>
+            <input type="checkbox" id="dialogueMask" name="dialogueMask">
+            <label for="dialogueMask">Filter out Dialogue Lines</label>
+            <br>
+            <input type="checkbox" id="tlnoteMask" name="tlnoteMask" checked>
+            <label for="tlnoteMask">Filter out TL Note Lines</label>
+            <br>
+            <input type="checkbox" id="quoteMask" name="quoteMask">
+            <label for="quoteMask">Filter out Quotation Lines</label>
+        </div>
+
+        <h2>Data Analysis</h2>
+        <div id="dataAnalysis">
+            <button type="button" onclick="analyseJSON()">Analyse JSON</button>
+        </div>
+        <div id="dataAnalysisOptions">
+            <div><b>JSON Data Analysis Options</b></div>
+            <input type="checkbox" id="analysisOutput" name="analysisOutput"> 
+            <label for="analysisOutput">Output Analysis to File (if unchecked, output is to HTML)</label>
+            <br>
+            <input type="checkbox" id="csvChars" name="csvChars"> 
+            <label for="csvChars">Output Character Distribution to CSV</label>
+            <br>
+            <input type="checkbox" id="csvWords" name="csvWords"> 
+            <label for="csvWords">Output Word Distribution to CSV</label>
+            <br>
+            <input type="checkbox" id="narrationAnalysisMask" name="narrationAnalysisMask"> 
+            <label for="narrationAnalysisMask">Filter out Narration Lines</label>
+            <br>
+            <input type="checkbox" id="dialogueAnalysisMask" name="dialogueAnalysisMask">
+            <label for="dialogueAnalysisMask">Filter out Dialogue Lines</label>
+            <br>
+            <input type="checkbox" id="tlnoteAnalysisMask" name="tlnoteAnalysisMask" checked>
+            <label for="tlnoteAnalysisMask">Filter out TL Note Lines</label>
+            <br>
+            <input type="checkbox" id="quoteAnalysisMask" name="quoteAnalysisMask">
+            <label for="quoteAnalysisMask">Filter out Quotation Lines</label>
+        </div>
+
+        <div>
+            <a id="downloadAnchorElem" style="display:none"></a>
+        </div>
+
+        <div>
+            <h2>How to Use</h2>
+            <p>
+                This is a custom written tool powered by vanilla Javascript for the purpose of processing and analyzing data for the 2022 CSC413 Final Project: "KonosubaNet".
+                Below are instructions to operating the Data Preparation, Data Processing, and Data Analysis functions. Data Preparation is a prerequisite for Data Processing and Analysis.
+            </p>
+            <p>
+                Note: Some information is outputted to the Javascript console during runtime of the tool, which can assist with problems or serve as a loading bar if things are taking too long.
+                It is recommended that the page is refreshed between file processes. Sometimes, repeated usage can cause the page to be stuck, which can be fixed with a refresh.
+            </p>
+            <h3>Data Preparation Instructions</h3>
+            <ol>
+                <li>
+                    <p>
+                        Ensure input data is correctly formatted in plaintext (with UTF-8 encoding). This requires line breaks separating every distinct line (multiple line breaks in a row will 
+                        be ignored by the tool and so can be used to increase readability) and proper volume, chapter, and part delimiters. Those delimiters are the following strings on their 
+                        own lines: 
+                        <pre>^VOL SPLIT^</pre>
+                        <pre>^CHAPTER SPLIT^</pre>
+                        <pre>^PART SPLIT^</pre>
+                        An example of a valid format can be found under the "examples" directory.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        An optional tagging system is available; it can be used in the Processing and Analysis functions. To use this tagging system, ensure all lines are formatted correctly:
+                        <ul>
+                            <li>
+                                <p>
+                                    All dialogue must begin with a double quotation mark (or begin with an opening angle bracket immediately followed by a double quotation in the case of 
+                                    Aegis' dialogue).
+                                </p>
+                            </li>
+                            <li>
+                                <p>All translation notes must begin with an opening angle bracket (and not immediately followed by a double quotation).</p>
+                            </li>
+                            <li>
+                                <p>All quotations (lines that are neither narration lines nor dialogue) must begin with a single quotation mark.</p>
+                            </li>
+                            <li>
+                                <p>All remaining lines will be classified as narration.</p>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Use the file uploader ("Choose File" button) and upload input data.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Use the "Plaintex to JSON" button to process file into machine processable JSON. This will download a JSON file to your machine with the name <i>data.json</i>.
+                        Note that the conversion process will turn directioned single and double quotation to non-directed single and double quotation. It will also remove the carriage return
+                        character added by Windows (the \r character inserted before every \n).
+                    </p>
+                </li>
+            </ol>
+            <h3>Data Processing Instructions</h3>
+            <ol>
+                <li>
+                    <p>
+                        The data processing function only takes files in a JSON format (with the .json extension). There is no format validation, so ensure files used for Data Processing 
+                        were returned by the Data Preparation function. Use the file uploader ("Choose File" button) to upload prepared data file.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Use the Filtering checkboxes in the "JSON to Data Options" to filter out lines of a certain tag. In the final data used for the project, translator notes are filtered 
+                        out.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Use the "JSON to Data" button to process JSON file into final data format. This will download a TXT file to your machine with the name <i>data.txt</i>.
+                        The final data format separates lines with consist single line breaks (\n) and parts with two line breaks (\n\n). This data file can be used by the network for training.
+                    </p>
+                </li>
+            </ol>
+            <h3>Data Analysis Instructions</h3>
+            <ol>
+                <li>
+                    <p>
+                        The data analysis function only takes files in a JSON format (with the .json extension). There is no format validation, so ensure files used for Data Analysis 
+                        were returned by the Data Preparation function. Use the file uploader ("Choose File" button) to upload prepared data file.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        The following options are available for data analysis under the "JSON Data Analysis Options":
+                        <ul>
+                            <li>
+                                <p>Use the Filtering checkboxes in the "JSON to Data Options" to filter out lines of a certain tag. </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Use the "Output Analysis to File" checkbox to determine where the analysis output will go. If unchecked, it will be outputted to the HTML page itself, under 
+                                    the "HTML Output" header. Otherwise, it will download a TXT file to your machine with the name <i>stats.txt</i> containing the output of the analysis.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Use the "Output Character/Word Distribution to CSV" checkboxes to download a CSV file to your machine with the name <i>dist.csv</i> containg the occurrences of 
+                                    the characters or words in the data file. The CSV file will be formatted with ("&lt;char/word>,&lt;number>") pairs per line. It is not recommended to check both 
+                                    boxes at once, as that will lump both character and word occurrences into a single CSV file.
+                                </p>
+                            </li>
+                        </ul>
+                         
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Use the "Analyse JSON" button to return the analysis of the data file. Any downloaded files will be triggered now (the browser may prompt to allow multiple files
+                        to be downloaded at once).
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <div>
+            <h2>HTML Output</h2>
+            <p id="fileContents">(Outputs to HTML will appear here)</p>
+        </div>
+
+        <!-- SCRIPTS -->
+        
+        <script type="text/javascript" src="conversion.js"></script> <!-- Scripts -->
+    </body>
+</html>
