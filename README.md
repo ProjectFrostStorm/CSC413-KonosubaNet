@@ -18,6 +18,47 @@ This is the architecture of each transformer block.
 There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size **4k**, where **k** is the size of the multiheaded attention's output. 
 
 # Data
+## Data Source
+
+The data for this project, being the mainline volumes of “KonoSuba: God's Blessing on this Wonderful World!”, was taken from a fan translation website that hosted full translation for all 17 volumes (as well as side stories and spinoffs that were not used in this project). 
+
+Besides containing complete translations of all novels, the source site also formatted all text in a consistent system. To go into specifics, the hierarchy of volumes, chapters, parts, and lines (referred to as “sentences” in the proposal), present in how our data was prepared and formatted, was the very same system used in the source. Parts are clearly separated by headers (and chapters split across different web pages). Consecutive sentences of dialogue spoken by a single character were grouped into single lines and line breaks clearly distinguish differing lines. 
+
+All lines also have consistent grammatical formatting (with only a few exceptions), with dialogue always starting with double quotations and translator’s notes always starting with angle brackets. As a consequence of this grouping, lines were able to be cleanly grouped and tagged, which allows the filtering of irrelevant text (this will be discussed further in Data Transformation/Formatting). 
+
+## Data Statistics (Data Summary)
+
+*Note: the full raw statistical numbers can be found in the stats.txt file.*
+
+In total, all 17 volumes of the “KonoSuba” light novels were used for this project. This includes 4,148,014 characters found within 754,749 words split across 45,030 lines (which are scattered across 610 parts in 116 chapters). An average of 92 characters appear per line and 5.5 per word. An average of 16.5 words appear per line.
+
+102 unique characters appear throughout the dataset forming 17,413 unique words. Of the 102 characters, 20 are non-standard, which in this context is defined as not appearing on an US keyboard. There were only 15,484 occurrences of these non-standard characters, making up less than 0.4% of all characters in the dataset. The 100 most common words (which makes up less than 1% of all unique words) make up more than 50% of all words in the set.
+
+The following are distributions of all unique characters and the 100 most common words in the dataset (it is recommended to view the graphs themselves for full resolution):
+
+![Bar graph illustrating the occurrences of all unique characters throughout the text.](./data/graphs/Occurrence of all Characters.png)
+
+![Bar graph illustrating the occurrences of the 100 most used words throughout the text.](./data/graphs/Occurrence of 100 Most Used Words.png)
+
+*Note: The word in 33rd place appears blank. This appears to be an issue of whitespace being counted as words and so can (and should) be ignored.*
+
+## Data Transformation/Formatting
+
+The transformation of data into a workable format could be separated into three distinct steps. Steps 2 and 3 are fully automated via a custom tool written specifically for this express purpose (this will be elaborated on in steps 2 and 3).
+
+The first step was scraping the data from the web source. Unfortunately, various issues led to the automation of this step infeasible. Besides needing to remove part headers and skip art that appears periodically through the text, later volumes included anti-scraping measures in the form of white text hidden in empty lines (like watermarks). There were also occasional formatting inconsistencies, such as the inclusion of line breaks that included whitespace (which caused lone whitespace to appear as lines) and translation notes being delimited with curly braces. Volumes 10 and 11 were also hosted on a different site and so had slightly differing formatting. All of these issues had to be detected and corrected manually.  
+Manually scraping the data involves copying all novel text to a plaintext document while making sure watermarks, extraneous whitespace, and headers are not included. Side stories (which are typically narrated by a different character) and author’s notes should be avoided. Every part, chapter, and volume must also be separated by a respective delimiting string for the automated tool (used in steps 2 and 3). Details about what that is can be found in the documentation of the automated tool.
+
+The second step is the preparation of data into a more machine friendly format. Included in the repo is an automated tool (written in Javascript with an HTML interface), called the “dataConverter”, which handles this step. The details of how to do this can be found within the documentation of the tool, which is included in the tool interface itself (and in the README for the tool).  
+Broadly speaking, it involves sending a fully formatted data text file from step 1 through the tool to produce an equivalent JSON file. The JSON files makes manipulation of lines easier and includes a tagging system that, taking advantage of the consistent grammatical formatting, tags each line as either narration, dialogue, quotation, or tlnote (translator’s note). The process also cleans out extra line breaks, Windows carriage returns (the \r character), and replaces the directional curly quotation marks with non-directional quotations (both double and single).
+
+This JSON file is then used in the third step, where the data is converted into a consistent format, usable by the model. This data processing step is also done via the automated tool with the details of how to do this being found within documentation. In addition, the option to filter out the translator’s notes should be enabled (as it is by default), as the TL notes is not to be used as part of the model. The ending format, as used in this project, is a human-readable format where lines are separated by single line breaks (\n) and parts are separated by double line breaks (\n\n). Chapters and volumes are not used.
+
+The statistics about the dataset was accumulated via the automated tool as well. Instructions for how to use the analysis part can also be found in documentation.
+
+## Data Splitting
+
+Data spitting does not apply to our project.
 
 # Training
 For model5, we tuned the following hyperparameters: batch size, learning rate, depth of model and heads and k.
