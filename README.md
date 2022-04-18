@@ -15,7 +15,7 @@ The characters first get passed through an embedding layer, and then the positio
 This is the architecture of each transformer block.
 ![Transformer Block](Transformer_Block.jpeg)
 
-There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size $4k$. 
+There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size **4k**, where **k** is the size of the multiheaded attention's output. 
 
 # Data
 
