@@ -11,6 +11,10 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
+from torchtext.data.metrics import bleu_score
+from nltk.translate.bleu_score import SmoothingFunction, sentence_bleu, corpus_bleu
+
+bleuscore_lst = []
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 #Use this instead of you want to use CPU
@@ -235,7 +239,7 @@ def train(model, batch_size=1, start_iter=0, start_epoch=1, num_epochs=1, lrate=
         
         print("Epoch %d. [Train Loss %f]" % 
               (e, train_cost))
-        
+        write_output(model, e + 1 + index)
         if save_path is not None:
                 torch.save(model.state_dict(), save_path.format(e))
         
@@ -267,6 +271,49 @@ def sample_sequence(model, max_len=5000, temperature=0.8):
     
     return generated_sequence
 
+def remove_padding(s):
+    x = s.replace('<PAD>', "")
+    if len(x) == 0:
+        return x
+    if x[0] == " ":
+        return x[1:]
+    return x
+
+
+def compute_bleu_score(model):
+    #   sequence = remove_padding(generated_sequence)
+    sequence = sample_sequence(model)
+    sequence_lst = sequence.split("\n")
+    s_removed = list(map(remove_padding, sequence_lst))
+    s = list(map((lambda x: x.split(" ")), s_removed))
+    n = len(s)
+    i = 0
+    res = 0
+    cc = SmoothingFunction()
+    while i + n < len(sentences):
+        #   print("i : %d" % i)
+        tmp = sentences[i:i + n]
+        z = list(map((lambda x: x.split(" ")), tmp))
+        score = corpus_bleu(s, z, smoothing_function=cc.method7)
+        #   print("score is:%f " % score)
+        res = max(res, score)
+        bleuscore_lst.append(score)
+        i += 1  # i += n use this if it's too slow
+    print("max is %f" % res)
+
+
+# list(map((lambda x: x.split(" ")),sentences))
+
+def write_output(model, index):
+    tmp_text = ""
+    for _ in range(5):
+        tmp_text += sample_sequence(model)
+    f1 = open("model5/outputs/output_by5_%d.txt" % index, "w", encoding='utf-8')
+    f1.write(tmp_text)
+    f1.close()
+    print("write output to: " + "model5/outputs/output_by5_%d.txt" % index)
+
+	
 model = Transformer(128, 8, 8, vocab_size)
 #model.load_state_dict(torch.load('model[216,8,3]-40.pk'))
 model.to(device)
