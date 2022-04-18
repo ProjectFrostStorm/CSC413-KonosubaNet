@@ -35,7 +35,7 @@ We decided to use a model of size **k=256,h=8,d=1**. The vocab size was **54**, 
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
 
-We pick the one that makes the most sense and has fewer grammatical error output as successful, which comes from model5's 298 training epoch.
+We pick the one that makes the most sense and has fewer grammatical error output as successful, which comes from 298 training epoch.
 
 The unsuccessful one come from epoch 32, it has several grammatical error and sometime includes the special charater "-" in between words.
 
