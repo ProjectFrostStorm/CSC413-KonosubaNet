@@ -11,6 +11,8 @@ This is a overview of the model
 
 ![Model](Transformer Architecture.jpeg)
 
+![Model](Transformer Architecture.jpeg)
+
 # Data
 
 # Results
