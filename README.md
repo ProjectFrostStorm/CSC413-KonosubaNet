@@ -24,7 +24,13 @@ Lastly, we use pytorch's MultiheadAttention to implement our attention mechanism
 Query, Key, Value are three linear layers with output size **k**. MutiheadAttention then takes them as parameters, partitioning the **k** inputs by **h**. So **k** needs to be divisible by **h**. Attention is then applied to the **h** sections, with a final layer unifying the heads. We also include an upper-trianglular attention mask as a parameter to make the mechanism autoregressive. The inputs and outputs are both size **NxSxk**.
 
 ## Model parameters
+outside of the transformer block, the character embedding has **kx(vocab_size)** parameters, since it has **vocab_size** many inputs, and **k** outputs. Similary, the final output layer has **(vocab_size+1)k** parameters (the +1 is from the bias). The positional encoding does not have any learnable parameters. 
 
+Inside the transformer block, *toquery*, *tokey*, *tovalue* are three linear layers with input, ouput size of *k*, and without bias. So they have **kxk** parameters each. For every head, **Wq, Wk,Wv** are all size **(k/h)x(k/h)**. Since there are **h** heads, and a final unifying layer at the end, the multihead attention layer has **hx(k/h)x(k/h) + kxk** parameters. Each layer normalization has 2 learnable parameters. Finally, our model has **d** transformer blocks, so in total we have
+
+**kx(vocab_size) + (vocab_size+1)k + d(4+4kxk+kxk/h)** parameters.
+
+We decided to use a model of size **k=256,h=8,d=1**. The vocab size was 54, so our model has 298244 learnable parameters.
 
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
