@@ -61,6 +61,7 @@ The statistics about the dataset was accumulated via the automated tool as well.
 Data spitting does not apply to our project.
 
 # Training
+## Hyperparameter Tunning
 For model5, we tuned the following hyperparameters: batch size, learning rate, depth of model and heads and k.
 
 For learning rate, we initially use 0.001, default from adam optimizer. Then we want to try a larger learning rate to speed up the trainin process. With 0.01, the model did not learn well and output garbage words such as (hell# w!fld). We also tried smaller learning rate 0.0008, which perform equally well as 0.001, slightly better then 0.001. It seems like increasing the learning rate from 0.0008 to 0.001 did not affect much on the model training speed and performance.
@@ -74,4 +75,9 @@ For batch size, we tried 1,2,4 and 8. With heads 256, we run out of memory when 
 # Results
 
 # Ethical concerns
+Trainning deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use, and stays within our group (un-published to public), but it could be potentially used by malicious people. In that case, training data that we get from internet violates author’s copyright as it becomes for commercial use.
 
+Other than limitation of training data, using our model to generate text should not cause any harm to the public, however, it could be possible that some malicious users are now able to impersonate the author’s writing style. Potentially, someone could come up with writings that are not original from the author and publish those online and pretend to be the author.
+Impersonating is a huge issue, with some minor changes in the code and different input text file, we are potentially able to train different models that could impersonating other writing style. For instance, this kind of model can be used to impersonating students not living with their parents, and ask for tuition on their behalf. This kind of impersonating and fraud is problematic
+
+In addition, if our model falls into the movel’s author’s hands, then he could potentially use this model to write sequels, which take away author’s autonomy. 
