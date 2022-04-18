@@ -138,6 +138,9 @@ In addition, if our model falls into the novel's author’s hands, then he could
 
 # Authors
 Sally Zhu (ethical concerns, interpret results, exaplin training hyperparamters)
+
 Yuan Bo Lai (implement bleu_score, train model, tune hyperparameter)
+
 Allen Yao (Get training data, formatting training data)
+
 Yue Ran Ma (writting Transformer model code, train model, tune hyperparameter, draw model graphs)
