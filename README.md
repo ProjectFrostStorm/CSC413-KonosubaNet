@@ -15,7 +15,10 @@ The characters first get passed through an embedding layer, and then the positio
 This is the architecture of each transformer block.
 ![Transformer Block](Transformer_Block.jpeg)
 
-There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size **4k**, where **k** is the size of the multiheaded attention's output. 
+There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size **4k**. The inputs and outputs are size **NxSxk**.
+
+Lastly, we use pytorch's MultiheadAttention to implement our attention mechanism.
+![Multihead attention](Multihead_Attention.jpeg)
 
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
