@@ -26,11 +26,11 @@ Query, Key, Value are three linear layers with output size **k**. MutiheadAttent
 ## Model parameters
 outside of the transformer block, the character embedding has **kx(vocab_size)** parameters, since it has **vocab_size** many inputs, and **k** outputs. Similary, the final output layer has **(vocab_size+1)k** parameters (the +1 is from the bias). The positional encoding does not have any learnable parameters. 
 
-Inside the transformer block, *toquery*, *tokey*, *tovalue* are three linear layers with input, ouput size of *k*, and without bias. So they have **kxk** parameters each. For every head, **Wq, Wk,Wv** are all size **(k/h)x(k/h)**. Since there are **h** heads, and a final unifying layer at the end, the multihead attention layer has **hx(k/h)x(k/h) + kxk** parameters. Each layer normalization has 2 learnable parameters. Finally, our model has **d** transformer blocks, so in total we have
+Inside the transformer block, *toquery*, *tokey*, *tovalue* are three linear layers with input, ouput size of *k*, and without bias. So they have **kxk** parameters each. For every head, **Wq, Wk,Wv** are all size **(k/h)x(k/h)**. Since there are **h** heads, and a final unifying layer at the end, the multihead attention layer has **hx(k/h)x(k/h) + kxk** parameters. Each layer normalization has 2 learnable parameters. The MLP consists of one layer with (input,output) **(k,4k)**, and another with **(4k,k)**. So from both layers, there are **4kxk + 4k + 4kxk +k** parameters. Finally, our model has **d** transformer blocks, so in total we have
 
-**kx(vocab_size) + (vocab_size+1)k + d(4+4kxk+kxk/h)** parameters.
+**kx(vocab_size) + (vocab_size+1)k + d(4+12kxk+kxk/h + 5k)** parameters.
 
-We decided to use a model of size **k=256,h=8,d=1**. The vocab size was **54**, so our model has **298,244** learnable parameters.
+We decided to use a model of size **k=256,h=8,d=1**. The vocab size was **54**, so our model has **823,812** learnable parameters.
 
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
