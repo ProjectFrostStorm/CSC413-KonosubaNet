@@ -5,12 +5,12 @@
 The goal of the project is to make a generative text model. The model is fed excerpts from the web novel series, KonoSuba, and tries to generate text mimicking the writing style of the training data, and generate texts of two to three paragraphs long (character-level RNN). Inputs are texts from the novel series and output are texts of the same nature, which ideally includes narration and dialogues.
 
 # Model
-We decided to use a transformer model. The model takes in a sequence of characters as inputs, and outputs a sequence of probabilities for the next character. The implementation of our model is based off of the implementation from http://peterbloem.nl/blog/transformers. However, instead of using the self attention module written in the blog, we use pytorch's MultiheadAttention, and we use positional encoding (implementation from https://pytorch.org/tutorials/beginner/transformer_tutorial.html) instead of positional embedding. 
+We decided to use a transformer model. The model takes in a sequence of characters as inputs, and outputs a sequence of probabilities for the next character. The implementation of our model is based off of the implementation from http://peterbloem.nl/blog/transformers. However, instead of using the self attention module written in the blog, we use pytorch's MultiheadAttention, and we use positional encoding (implementation from https://pytorch.org/tutorials/beginner/transformer_tutorial.html) instead of positional embedding. The three main hyperparameters of our model architecture are **k**, **h**, and **d**. **k** is the embedding size, and the input,ouput size of most layers in architecture. **h** is the number heads in the Multihead Attention layer. **d** is the depth, or the number of transformer blocks in the model.
 
 This is a overview of the model
 ![Model](Transformer_Architecture.jpeg)
 
-The characters first get passed through an embedding layer, and then the positional encoding is added to the embeddings. The inputs are then passed through a series of transformer blocks before the final layer converts the inputs to logits, which is then soft maxed to get the probabilities of the next character.
+The characters first get passed through an embedding layer, and then the positional encoding is added to the embeddings. The inputs are then passed through a series of transformer blocks before the final layer converts the inputs to logits, which is then soft maxed to get the probabilities of the next character. The inputs are size **NxS**, where **N** is the batch size, and **S** is the sequence length. The outputs are size **NxSxvocab_size**.
 
 This is the architecture of each transformer block.
 ![Transformer Block](Transformer_Block.jpeg)
@@ -66,6 +66,10 @@ The statistics about the dataset was accumulated via the automated tool as well.
 ## Data Splitting
 
 Data spitting does not apply to our project.
+
+## Data creation
+
+The actual data points we used to train the model are samples of the entire text with different line lengths. We first read the entire text, and split it by lines. We then partition the texts by varying line lengths. We remove samples that start with the same line since if there are two or more data points that start with the same line, but end at different lines, then the model cannot optimize for all the data points. 
 
 # Training
 ## Training Curve
