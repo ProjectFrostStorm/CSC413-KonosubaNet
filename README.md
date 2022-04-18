@@ -109,11 +109,11 @@ sentence_bleu from nltk.translate.bleu_score takes 2 sentences and compare word-
 
 
 # Ethical concerns
-Trainning deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use, and stays within our group (un-published to public), but it could be potentially used by malicious people. In that case, training data that we get from internet violates author’s copyright as it becomes for commercial use.
+Training deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use and stays within our group (un-published to the public), but it could be potentially used by malicious people. In that case, training data that we get from the internet violates the author’s copyright as it becomes for commercial use.
 
-Other than limitation of training data, using our model to generate text should not cause any harm to the public, however, it could be possible that some malicious users are now able to impersonate the author’s writing style. Potentially, someone could come up with writings that are not original from the author and publish those online and pretend to be the author.
-Impersonating is a huge issue, with some minor changes in the code and different input text file, we are potentially able to train different models that could impersonating other writing style. For instance, this kind of model can be used to impersonating students not living with their parents, and ask for tuition on their behalf. This kind of impersonating and fraud is problematic
+Other than the limitation of training data, using our model to generate text should not cause any harm to the public, however, it could be possible that some malicious users are now able to impersonate the author’s writing style. Potentially, someone could come up with writings that are not originally from the author and publish those online and pretend to be the author.
+Impersonating is a huge issue, with some minor changes in the code and different input text files, we are potentially able to train different models that could impersonate other writing style. For instance, this kind of model can be used to impersonate students not living with their parents, and ask for tuition on their behalf. This kind of impersonation and fraud is problematic
 
-In addition, if our model falls into the movel’s author’s hands, then he could potentially use this model to write sequels, which take away author’s autonomy. 
+In addition, if our model falls into the novel's author’s hands, then he could potentially use this model to write sequels, which take away the author’s autonomy. 
 
 # Authors
