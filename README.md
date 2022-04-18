@@ -1,6 +1,6 @@
 # CSC413-KonosubaNet
 
-# Task
+# Introduction
 
 The goal of the project is to make a generative text model. The model is fed excerpts from the web novel series, KonoSuba, and tries to generate text mimicking the writing style. 
 
@@ -68,6 +68,9 @@ The statistics about the dataset was accumulated via the automated tool as well.
 Data spitting does not apply to our project.
 
 # Training
+## Training Curve
+
+
 ## Hyperparameter Tunning
 For model5, we tuned the following hyperparameters: batch size, learning rate, depth of model and heads and k.
 
@@ -80,6 +83,12 @@ For head and k, heads needs to be divisible by k. The largest heads we could try
 For batch size, we tried 1,2,4 and 8. With heads 256, we run out of memory when batch size equals to 8. So the largest batch size we could have is 4. More heads means more trainable units, with concumes more memory. When we reduced heads to 128, we ere able to use larger batch size. The larger the batch size, the faster will be the training speed (parallel training).
 
 # Results
+## Quantitative Measures
+
+## Quantitative and Qualitative Results
+
+## Justification of Results
+
 
 # Ethical concerns
 Trainning deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use, and stays within our group (un-published to public), but it could be potentially used by malicious people. In that case, training data that we get from internet violates author’s copyright as it becomes for commercial use.
@@ -88,3 +97,5 @@ Other than limitation of training data, using our model to generate text should 
 Impersonating is a huge issue, with some minor changes in the code and different input text file, we are potentially able to train different models that could impersonating other writing style. For instance, this kind of model can be used to impersonating students not living with their parents, and ask for tuition on their behalf. This kind of impersonating and fraud is problematic
 
 In addition, if our model falls into the movel’s author’s hands, then he could potentially use this model to write sequels, which take away author’s autonomy. 
+
+# Authors
