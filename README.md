@@ -88,7 +88,7 @@ The actual data points we used to train the model are samples of the entire text
 
 # Training
 ## Training Curve
-
+![training_curve](training_curve.png)
 
 ## Hyperparameter Tunning
 For our model, we tuned the following hyperparameters: batch size, learning rate, depth of model, number of heads, and k.
