@@ -30,7 +30,7 @@ Inside the transformer block, *toquery*, *tokey*, *tovalue* are three linear lay
 
 **kx(vocab_size) + (vocab_size+1)k + d(4+4kxk+kxk/h)** parameters.
 
-We decided to use a model of size **k=256,h=8,d=1**. The vocab size was 54, so our model has 298244 learnable parameters.
+We decided to use a model of size **k=256,h=8,d=1**. The vocab size was **54**, so our model has **298,244** learnable parameters.
 
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
