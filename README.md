@@ -9,7 +9,7 @@ We decided to use a transformer model. The model takes in a sequence of characte
 
 This is a overview of the model
 
-! [Model](Transformer Architecture.jpeg)
+![Model](Transformer Architecture.jpeg)
 
 # Data
 
