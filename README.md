@@ -17,6 +17,12 @@ This is the architecture of each transformer block.
 
 There is a skipped connection between the multiheaded attention layer, and between the MLP layer. The MLP is two layers of size **4k**, where **k** is the size of the multiheaded attention's output. 
 
+## Model Examples
+Please check output_successful.txt and output_unsuccessful.txt
+
+We pick the one that makes the most sense and has fewer grammatical error outout as succssful, which comes from model5's 298 training epoch.
+The unsuccessful one come from epoch 32, it has several gramatical error and special charater "-" inbetween words.
+
 # Data
 ## Data Source
 
