@@ -13,7 +13,7 @@ This is a overview of the model
 The characters first get passed through an embedding layer, and then the positional encoding is added to the embeddings. The inputs are then passed through a series of transformer blocks before the final layer converts the inputs to logits, which is then soft maxed to get the probabilities of the next character.
 
 This is the architecture of each transformer block.
-![Transformer Block](Transformer_Block.jpeg)
+
 
 
 # Data
