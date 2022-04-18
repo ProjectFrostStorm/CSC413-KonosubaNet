@@ -128,7 +128,7 @@ From the following graph, we see that the bleu scores are iterating mainly betwe
 ## Justification of Results
 
 
-# Ethical concerns
+# Ethical Concerns
 Training deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use and stays within our group (un-published to the public), but it could be potentially used by malicious people. In that case, training data that we get from the internet violates the author’s copyright as it becomes for commercial use.
 
 Other than the limitation of training data, using our model to generate text should not cause any harm to the public, however, it could be possible that some malicious users are now able to impersonate the author’s writing style. Potentially, someone could come up with writings that are not originally from the author and publish those online and pretend to be the author.
@@ -137,3 +137,7 @@ Impersonating is a huge issue, with some minor changes in the code and different
 In addition, if our model falls into the novel's author’s hands, then he could potentially use this model to write sequels, which take away the author’s autonomy. 
 
 # Authors
+Sally Zhu (ethical concerns, interpret results, exaplin training hyperparamters)
+Yuan Bo Lai (implement bleu_score, train model, tune hyperparameter)
+Allen Yao (Get training data, formatting training data)
+Yue Ran Ma (writting Transformer model code, train model, tune hyperparameter, draw model graphs)
