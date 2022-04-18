@@ -36,9 +36,9 @@ In total, all 17 volumes of the “KonoSuba” light novels were used for this p
 
 The following are distributions of all unique characters and the 100 most common words in the dataset (it is recommended to view the graphs themselves for full resolution):
 
-![Bar graph illustrating the occurrences of all unique characters throughout the text.](./data/graphs/Occurrence of all Characters.png)
+![Bar graph illustrating the occurrences of all unique characters throughout the text.](/data/graphs/Occurrence%20of%20all%20Characters.png)
 
-![Bar graph illustrating the occurrences of the 100 most used words throughout the text.](./data/graphs/Occurrence of 100 Most Used Words.png)
+![Bar graph illustrating the occurrences of the 100 most used words throughout the text.](/data/graphs/Occurrence%20of%20100%20Most%20Used%20Words.png)
 
 *Note: The word in 33rd place appears blank. This appears to be an issue of whitespace being counted as words and so can (and should) be ignored.*
 
