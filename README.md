@@ -88,6 +88,14 @@ For batch size, we tried 1,2,4 and 8. With heads 256, we run out of memory when 
 
 # Results
 ## Quantitative Measures
+We are using bleu score as a quantitative measure. It computes the common words/sentences between each corpus (using a smoothing function).
+We tried using several bleu score functions from different librairies. 
+
+bleu score from torchtext always returns 0 (since it takes 2 paragraphs and only compares sentence wise)
+
+corpus_bleu from nltk.translate.bleu_score with different smoothingfunction, method7 leads the best score and is what we are using with our model.
+
+sentence_bleu from nltk.translate.bleu_score takes 2 sentences and compare word-wise. We are not using this one since some sentences only contains 1 word (e.g. “hmmm”), which will get a perfect score. This kind of perfect score is meaningless. 
 
 ## Quantitative and Qualitative Results
 
