@@ -114,6 +114,15 @@ sentence_bleu from nltk.translate.bleu_score takes 2 sentences and compare word-
 
 ## Quantitative and Qualitative Results
 
+After 300 epochs of training, the model is relatively good at generating some texts. Since we are trying to generate new texts, we do not have a test set to validate our outputs. In our case, we are using human interpretation as a method of interpreting the result qualitatively. 
+
+From the output_successful.txt, we can see that our model is relatively good at constructing part of a sentence. For instance, in line 9, we see "Hey, are you sure that a war ….”. Although the reset of the sentence does not have any meaning at a human-readable level, we succeed at generating part of a meaningful sentence. In addition, our models will take care of verb tenses. Verbs following a third-person singular subject will have an “s” at the end. For example, in line 2, “... she [starts] at the others that [accentuates] at all”. Also, we can tell that the generated text is a combination of narration and dialogues (which start with a quotation mark).
+
+It is very hard to determine whether the output texts follow the novel author’s writing style. Since most of the sentences are not grammatically correct and are only partially meaningful. However, with the use of words, we can say that it should come from a novel (and not journal articles, poems, etc.). 
+When analyzed from a qualitative point of view, our use of the bleu score is not a perfect choice. Usually, bleu score is comparing output from a model and some reference texts. In our case, we don’t have a reference text. We trained our model using the 17 volumes of the novel, comparing our model with the 18th volume is not a good way to conclude whether our model performed well or not. Our bleu score function is comparing every 10 sentences of the novel (starting from volume1) to every 10 sentences of the generated text. The score we get at epoch 300 is 0.082595. 
+
+From the following graph, we see that the bleu scores are iterating mainly between 0.05 and 0.15. Bleu scores are not positively correlated with epochs, it does not always increase as epoch increases. This can be explained by the definition of bleu score, which usually compares the generated text with a single truth. Since we are only comparing how close is our output from the training data, then the shape of this graph can be explained.
+
 ## Justification of Results
 
 
