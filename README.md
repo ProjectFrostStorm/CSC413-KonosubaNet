@@ -23,6 +23,9 @@ Lastly, we use pytorch's MultiheadAttention to implement our attention mechanism
 
 Query, Key, Value are three linear layers with output size **k**. MutiheadAttention then takes them as parameters, partitioning the **k** inputs by **h**. So **k** needs to be divisible by **h**. Attention is then applied to the **h** sections, with a final layer unifying the heads. We also include an upper-trianglular attention mask as a parameter to make the mechanism autoregressive. The inputs and outputs are both size **NxSxk**.
 
+## Model parameters
+
+
 ## Model Examples
 Please check *output_successful.txt* and *output_unsuccessful.txt*
 
