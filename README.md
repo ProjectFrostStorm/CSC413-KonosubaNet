@@ -132,7 +132,7 @@ When analyzed from a qualitative point of view, our use of the bleu score is not
 
 From the following graph, we see that the bleu scores are iterating mainly between 0.05 and 0.15. Bleu scores are not positively correlated with epochs, it does not always increase as epoch increases. This can be explained by the definition of bleu score, which usually compares the generated text with a single truth. Since we are only comparing how close is our output from the training data, then the shape of this graph can be explained.
 
-![bleu_score_per_epoch](bleu_score_per_epoch.png)
+![bleu_score_per_epoch](bleu_score.png)
 
 ## Justification of Results
 
