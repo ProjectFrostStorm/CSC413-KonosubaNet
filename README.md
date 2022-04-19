@@ -137,7 +137,19 @@ From the following graph, we see that the bleu scores are iterating mainly betwe
 ![bleu_score_per_epoch](bleu_score.png)
 
 ## Justification of Results
+Our model did not perform perfectly at generating text impersonating the novel. This can be shown by our output texts, most of the sentences did not make sense. One potential reason we could think of is the lack of computing memory. As discussed earlier, making k and the number of heads larger will result in a more complex model, thus better at generating text. In addition, making depth larger would result in more trainable units, and larger weights (a more complex model which stores more information about training data). In addition, having a larger batch size would make the loss curve smoother. 
 
+We also expect that our training loss should be above a certain level and never reaches zero since the first few words as little or no information to make predictions. In our case, increasing the number of transformer blocks did not seem to help. 
+For example, we tried the following model k=128,h=8,d=8, which generates the following output: 
+
+*jfth, ;"The · usus Uhalit bore plleve sal loupe t whare ble cou atou hothe corking t in, tof ste lissha tho se thotha alereay t care al ban t Thean y tour the d whe sin frs d s co uristher atha withard ling it the ghe in y the fathasathe t t heark lprit thenind torers owhe my tous touthe bint hing who s or I rlloshe me tof t t d p werishe are d sinere her d yon d on tha w t withe t mouth are tod athas thist amen pe st therkn nto the itha thr soffist st w t whing th dit the the y s peme are y thof gumpel wo t ang aithes s are t blind t to t thad is te t r me whin or the t wige do ithe core I tof then bupene se the t… whit the wathe tho tho is me fof watore mon thar y, thereco d ire y ar wheat the o wid ulliger bong w tre the plo ape me wiguthe in t are ang me s tes m itanthe win as.
+Scug the talin he as me ass me s a Cet t whithacougu wad omy a an shith o l s thexpere str e hey he owar I d sthed d r w r d s t yor the ser whe t ither d ave che o y the ha the the te me t me the me wout t ce ct yo d ckid heris my me he f whoor ade mare me bo I's th.
+"*
+This generated text is even worse, where vocabulary is not grammatically correct. So smaller but more numbers of transformer blocks did not help.
+
+In addition, because our model is auto-regressive, the first few characters have very little info to make their predictions.
+
+When analysing the training data, we think that it has a reasonable ditribution of words, so our model performance is not affected by the training data.
 
 # Ethical Concerns
 Training deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use and stays within our group (un-published to the public), but it could be potentially used by malicious people. In that case, training data that we get from the internet violates the author’s copyright as it becomes for commercial use.
