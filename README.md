@@ -152,6 +152,8 @@ In addition, because our model is auto-regressive, the first few characters have
 
 When analysing the training data, we think that it has a reasonable ditribution of words, so our model performance is not affected by the training data.
 
+In order to increase model performance, we could train using computers with more memory, but also set *max_seq_length* to 512. This means that instead of generating from random length, our modele only remembers 512 characters and loses context of everything (like weight) every 512 characters. This could also be a way to solve memory issue.
+
 # Ethical Concerns
 Training deep learning models with novel text could be in some sense, violating author copyright. In our case, the model is not for commercial use and stays within our group (un-published to the public), but it could be potentially used by malicious people. In that case, training data that we get from the internet violates the author’s copyright as it becomes for commercial use.
 
