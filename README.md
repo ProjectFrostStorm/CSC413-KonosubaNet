@@ -84,9 +84,11 @@ Data spitting does not apply to our project.
 
 ## Data creation
 
-The actual data points we used to train the model are samples of the entire text with different line lengths. We first read the entire text, and split it by lines. We then partition the texts by varying line lengths. We remove samples that start with the same line since if there are two or more data points that start with the same line, but end at different lines, then the model cannot optimize for all the data points. Partition my line lengths 9-14, and removing data points that start with the same line withs us a data size of **18141**.
+The actual data points we used to train the model are samples of the entire text with different line lengths. We first read the entire text, and split it by lines. We then partition the texts by varying line lengths, turn the text into a list of characters, and add **'<BOS>','<EOS>'** to the beginning and end respectivly. We remove samples that start with the same line since if there are two or more data points that start with the same line, but end at different lines, then the model cannot optimize for all the data points. Partition my line lengths 9-14, and removing data points that start with the same line withs us a data size of **18141**.
 
 # Training
+
+For training, we used teacher forcing. So the input is **sequence[:-1]** and the target is **sequence[1:]**. For loss function and optimizer, we use cross-entrophy, and ADAM respectivly. 
 ## Training Curve
 ![training_curve](training_curve.png)
 
