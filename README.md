@@ -122,7 +122,7 @@ It is very hard to determine whether the output texts follow the novel author’
 
 To see how the model performs, we create a Google form (https://forms.gle/ysc9TBQQcJPQ5DUPA) to test whether people are able to distinguish machine-generated text from the original text. 
 
-![google_form](google_form.png)
+![google_form](google_form.PNG)
 
 As shown in the above table, we see that all 15 people are good at distinguishing original text with an average of 12/15 correct answers at the original text. Among the 5 machine-generated text, there are 2 pieces where people have a harder time getting the correct answer (where 1 of them is our output_successful.txt). 10/15 of the people think that the output_successful.txt is from the original text. This shows that our model is able to generate texts that somehow mimic real novels. However, it is still hard to say whether it is good at impersonating the original author since 9/15 has never heard of this novel/anime and 0/15 has read the novel.
 
