@@ -126,9 +126,9 @@ class TransformerBlock(nn.Module):
     self.norm2 = nn.LayerNorm(k)
 
     self.ff = nn.Sequential(
-      nn.Linear(k, 2 * k),
+      nn.Linear(k, 4 * k),
       nn.ReLU(),
-      nn.Linear(2 * k, k))
+      nn.Linear(4 * k, k))
     
   def forward(self, x):
       b, t, k = x.size()
@@ -314,14 +314,13 @@ def write_output(model, index):
     print("write output to: " + "model5/outputs/output_by5_%d.txt" % index)
 
 	
-model = Transformer(128, 8, 8, vocab_size)
-#model.load_state_dict(torch.load('model[216,8,3]-40.pk'))
+model = Transformer(256, 8, 1, vocab_size)
+#model.load_state_dict(torch.load('model[256,8,1]-10.pk'))
 model.to(device)
 
-path = 'model[128,8,8]-{}.pk'
-info = train(model, batch_size=4, num_epochs=40, 
-     lrate=0.0007, wd=0.001, 
-     save_path=path)
+path = 'model[256,8,1]-{}.pk'
+info = train(model, batch_size=4, num_epochs=10, 
+     lrate=0.0008, save_path=path)
 
 plt.title("Learning Curve: Loss per Iteration")
 plt.plot(info[0], info[1])
