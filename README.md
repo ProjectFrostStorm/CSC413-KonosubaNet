@@ -84,7 +84,7 @@ Data spitting does not apply to our project.
 
 ## Data creation
 
-The actual data points we used to train the model are samples of the entire text with different line lengths. We first read the entire text, and split it by lines. We then partition the texts by varying line lengths. We remove samples that start with the same line since if there are two or more data points that start with the same line, but end at different lines, then the model cannot optimize for all the data points. 
+The actual data points we used to train the model are samples of the entire text with different line lengths. We first read the entire text, and split it by lines. We then partition the texts by varying line lengths. We remove samples that start with the same line since if there are two or more data points that start with the same line, but end at different lines, then the model cannot optimize for all the data points. Partition my line lengths 9-14, and removing data points that start with the same line withs us a data size of **18141**.
 
 # Training
 ## Training Curve
